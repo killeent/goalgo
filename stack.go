@@ -3,9 +3,7 @@ Package goalgo implements standard CS data structures and algorithms.
 */
 package goalgo
 
-import "errors"
-
-// Stack is a FIFO data structure.
+// Stack is a LIFO data structure.
 type Stack struct {
 	top  *element
 	size int
@@ -23,15 +21,15 @@ func (s *Stack) Push(data interface{}) {
 }
 
 // Pop removes and returns the top element in the Stack. If
-// the Stack is empty, returns a non-nil error.
-func (s *Stack) Pop() (interface{}, error) {
+// the Stack is empty, returns nil
+func (s *Stack) Pop() interface{} {
 	if s.size > 0 {
 		data := s.top.data
 		s.top = s.top.next
 		s.size--
-		return data, nil
+		return data
 	}
-	return 0, errors.New("Stack is empty")
+	return nil
 }
 
 // Count returns the number of elements in the Stack.
