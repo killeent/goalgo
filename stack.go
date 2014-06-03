@@ -13,18 +13,18 @@ type Stack struct {
 
 type element struct {
 	next *element
-	data int
+	data interface{}
 }
 
 // Push adds an element to the top of the Stack.
-func (s *Stack) Push(data int) {
+func (s *Stack) Push(data interface{}) {
 	s.top = &element{next: s.top, data: data}
 	s.size++
 }
 
 // Pop removes and returns the top element in the Stack. If
 // the Stack is empty, returns a non-nil error.
-func (s *Stack) Pop() (int, error) {
+func (s *Stack) Pop() (interface{}, error) {
 	if s.size > 0 {
 		data := s.top.data
 		s.top = s.top.next
