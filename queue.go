@@ -2,21 +2,27 @@ package goalgo
 
 // Queue is a FIFO data structure.
 type Queue struct {
-	front *element
-	back  *element
+	front *queueElement
+	back  *queueElement
 	count int
+}
+
+type queueElement struct {
+	next *queueElement
+	data interface{}
 }
 
 // Push adds an element to the end of the Queue.
 func (q *Queue) Push(data interface{}) {
-	elt := &element{data: data, next: nil}
+	elt := &queueElement{data: data, next: nil}
 	if q.count == 0 {
 		q.front = elt
 		q.back = elt
 	} else if q.count == 1 {
 		q.back = elt
-		q.front.next = q.back
+		q.front.next = elt
 	} else {
+		q.back.next = elt
 		q.back = elt
 	}
 	q.count++

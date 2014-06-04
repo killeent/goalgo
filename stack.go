@@ -5,22 +5,22 @@ package goalgo
 
 // Stack is a LIFO data structure.
 type Stack struct {
-	top  *element
+	top  *stackElement
 	size int
 }
 
-type element struct {
-	next *element
+type stackElement struct {
+	next *stackElement
 	data interface{}
 }
 
-// Push adds an element to the top of the Stack.
+// Push adds an stackElement to the top of the Stack.
 func (s *Stack) Push(data interface{}) {
-	s.top = &element{next: s.top, data: data}
+	s.top = &stackElement{next: s.top, data: data}
 	s.size++
 }
 
-// Pop removes and returns the top element in the Stack. If
+// Pop removes and returns the top stackElement in the Stack. If
 // the Stack is empty, returns nil
 func (s *Stack) Pop() interface{} {
 	if s.size > 0 {
@@ -32,7 +32,7 @@ func (s *Stack) Pop() interface{} {
 	return nil
 }
 
-// Count returns the number of elements in the Stack.
+// Count returns the number of stackElements in the Stack.
 func (s *Stack) Count() int {
 	return s.size
 }
